@@ -1,30 +1,32 @@
 #!/usr/bin/python3
-"""
-Using what you did in the task #0,
-extend your Python script
-to export data in the CSV format.
-"""
+"""Export data in the JSON format"""
+import json
+import requests
+from sys import argv
+
+
+def get_api():
+    """gather data from an API"""
+    url = 'https://jsonplaceholder.typicode.com/'
+    uid = argv[1]
+
+    # get a specific user from users in jsonplaceholder
+    usr = requests.get(url + 'users/{}'.format(uid)).json()
+    # make a query string to get tasks based on user id
+    todo = requests.get(url + 'todos', params={'userId': uid}).json()
+
+    with open('{}.json'.format(uid), 'w') as file:
+        obj = {uid: []}
+        for employee in todo:
+            tmp_obj = {
+                    'task': employee.get('title'),
+                    'completed': employee.get('completed'),
+                    'username': usr.get('username')
+                    }
+            obj[uid].append(tmp_obj)
+        # serialize object into a JSON stream
+        json.dump(obj, file)
+
 
 if __name__ == '__main__':
-    import requests
-    import sys
-    import csv
-    import importlib
-    import json
-    from funct import getdata3, printf
-    module = importlib.import_module('funct')
-    getdata = module.getdata3
-
-    employee_id = int(sys.argv[1])
-    user_id, username, todos_data = getdata(employee_id)
-    tasks = []
-    for todo in todos_data:
-        task = {
-            'task': todo['title'],
-            'completed': todo['completed'],
-            'username': username
-        }
-        tasks.append(task)
-    final_dic = {employee_id: tasks}
-    with open(f'{employee_id}.json', 'w') as f:
-        json.dump(final_dic, f)
+    get_api()
