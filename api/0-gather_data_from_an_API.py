@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ Gather data from an API """
+
 import urllib.request
 import json
 import sys
@@ -41,6 +42,7 @@ def get_employee_todo_progress(employee_id):
 
 
 if __name__ == "__main__":
+    import sys
     if len(sys.argv) != 2:
         print("Usage: python3 script.py <employee_id>")
         sys.exit(1)
