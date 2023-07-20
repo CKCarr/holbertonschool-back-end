@@ -4,6 +4,7 @@ import urllib.request
 import json
 import sys
 
+
 def get_employee_todo_progress(employee_id):
     try:
         # Make a GET request to the API
@@ -15,12 +16,14 @@ def get_employee_todo_progress(employee_id):
         employee_name = todos[0]['username']
 
         # Filter completed tasks
-        completed_tasks = [todo['title'] for todo in todos if todo['completed']]
+        completed_tasks = [todo['title']
+                           for todo in todos if todo['completed']]
         num_completed_tasks = len(completed_tasks)
         total_tasks = len(todos)
 
         # Print the employee's TODO list progress
-        print(f"Employee {employee_name} is done with tasks({num_completed_tasks}/{total_tasks}):")
+        print(f"Employee {employee_name}
+              is done with tasks({num_completed_tasks}/{total_tasks}): ")
         print(f"{employee_name}:")
 
         # Print the title of completed tasks
@@ -35,6 +38,7 @@ def get_employee_todo_progress(employee_id):
 
     except json.JSONDecodeError as e:
         print("Error: Failed to parse JSON response")
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
