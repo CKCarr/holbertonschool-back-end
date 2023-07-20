@@ -37,4 +37,3 @@ if __name__ == '__main__':
                 [id, EMPLOYEE_NAME, str(task['completed']), task['title']])
 
     print("Data exported to {} successfully!".format(filename))
-
