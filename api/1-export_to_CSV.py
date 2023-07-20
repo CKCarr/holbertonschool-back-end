@@ -28,7 +28,7 @@ if __name__ == '__main__':
 
     # Export to CSV
     filename = "{}.csv".format(id)
-    with open(filename, 'w', newline='') as csvfile:
+    with open(filename, 'w', newline='') as USER_ID.csv:
         writer = csv.writer(csvfile)
         writer.writerow(
             ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
