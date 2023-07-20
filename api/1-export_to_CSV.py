@@ -27,12 +27,15 @@ if __name__ == '__main__':
         print("\t {}".format(task['title']))
 
     # Export to CSV
-    fileName = f"{EMPLOYEE_ID}.csv"
+    CSV_FILENAME = "{}.csv".format(id)
+    with open(csv_filename, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(
+            ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
 
-    with open(fileName, "w", newline="") as file:
-        writer = csv.writer(file, quoting=csv.QUOTE_NONNUMERIC)
-        for task in data:
+        for task in response:
+            task_completed_status = "True" if task['completed'] else "False"
             writer.writerow(
-                [EMPLOYEE_ID, EMPLOYEE_NAME, str(task["completed"]),
-                 task["title"]]
-            )
+                [id, EMPLOYEE_NAME, task_completed_status, task['title']])
+
+    print("Data exported to {}".format(csv_filename))
