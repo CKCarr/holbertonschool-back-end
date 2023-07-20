@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """Script that prints specific information from an API"""
+import csv
 import requests
 import sys
-import csv
+
 
 if __name__ == '__main__':
     API_URL = 'https://jsonplaceholder.typicode.com'
