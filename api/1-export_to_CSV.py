@@ -31,8 +31,6 @@ if __name__ == '__main__':
     csv_filename = "{}.csv".format(id)
     with open(csv_filename, mode='w', newline='') as file:
         writer = csv.writer(file, quoting=csv.QUOTE_NONNUMERIC)
-        writer.writerow(
-            ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
 
         for task in response:
             task_completed_status = "True" if task['completed'] else "False"
