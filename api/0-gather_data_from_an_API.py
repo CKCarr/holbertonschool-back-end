@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+    """Gather data from an API"""
 import urllib.request
 import json
 import sys
