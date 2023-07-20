@@ -23,3 +23,17 @@ if __name__ == '__main__':
 
     for task in completed_tasks:
         print("\t {}".format(task['title']))
+
+    # Export to CSV
+    filename = "{}.csv".format(id)
+    with open(filename, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(
+            ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+
+        for task in response:
+            writer.writerow(
+                [id, EMPLOYEE_NAME, str(task['completed']), task['title']])
+
+    print("Data exported to {} successfully!".format(filename))
+
